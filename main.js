@@ -28,14 +28,15 @@ MenuItem.prototype.isCitrusFree = function(){
 	}
 	return  true;};
 MenuItem.prototype.toString = function(){
-	return "{0}: {1}  Price: {2}. {3}{4}{5}   Ingredients: {6}".supplant([
+	//console.log(this.ingredients.toString().replace(/,/g , ""));
+	return "{0}: {1}  Price: {2}. {3}{4}{5}   \nIngredients: {6}".supplant([
 		this.name,
 		this.description,
 		this.price,
 		this.isVegan() ? "  This " + (this instanceof Plate ? "plate" : "drink") + " is vegan." : "",
 		this.isGlutenFree() ? "  This " + (this instanceof Plate ? "plate" : "drink") + " is gluten free." : "", 
 		this.isCitrusFree() ? "  This " + (this instanceof Plate ? "plate" : "drink") + " is citrus free." : "",
-		this.ingredients.toString().split(",").join()
+		this.ingredients.toString().replace(/,/g , "")
 	]);
 };
 
@@ -51,7 +52,7 @@ this.citrusFree = isCitrusFree || false;
 }
 FoodItem.prototype.toString = function(){
 	// tempArray = 
-	return "{0}:  {1} calories.{2}{3}{4}".supplant([this.name, this.calories,
+	return "\n  --{0}:  {1} calories.{2}{3}{4}".supplant([this.name, this.calories,
 		this.vegan ? "  This ingredient is vegan." : "",
 		this.glutenFree ? "  This ingredient is gluten free." : "", 
 		this.citrusFree ? "  This ingredient is citrus free." : "" ]);
